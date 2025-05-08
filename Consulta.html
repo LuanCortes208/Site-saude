@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedSaúde - Agendamento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto bg-white min-h-screen shadow-md rounded-lg">
+        <header class="bg-blue-500 text-white p-4 flex justify-between items-center rounded-t-lg">
+            <h1 class="text-xl font-semibold">MedSaúde</h1>
+            <div class="user-icon w-9 h-9 bg-white rounded-full flex justify-center items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-blue-500"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+        </header>
+
+        <main class="p-6">
+            <section id="especialidade" class="mb-8">
+                <h2 class="text-2xl font-semibold text-blue-600 mb-4">Agendar Consulta</h2>
+                <div class="mb-4">
+                    <input type="text" placeholder="Buscar especialidade..." class="w-full p-2 rounded-md border border-gray-300 focus:ring focus:ring-blue-200 focus:border-blue-300" />
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-center hover:shadow-lg transition-shadow duration-200 cursor-pointer">
+                        <span class="text-5xl mb-2 text-blue-500">🩺</span>
+                        <span class="text-center text-gray-700">Clínica Geral</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-center hover:shadow-lg transition-shadow duration-200 cursor-pointer">
+                        <span class="text-5xl mb-2 text-blue-500">❤️</span>
+                        <span class="text-center text-gray-700">Cardiologia</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-center hover:shadow-lg transition-shadow duration-200 cursor-pointer">
+                        <span class="text-5xl mb-2 text-blue-500">🧠</span>
+                        <span class="text-center text-gray-700">Neurologia</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-center hover:shadow-lg transition-shadow duration-200 cursor-pointer">
+                        <span class="text-5xl mb-2 text-blue-500">🦴</span>
+                        <span class="text-center text-gray-700">Ortopedia</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-center hover:shadow-lg transition-shadow duration-200 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye text-blue-500 mb-2">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <span class="text-center text-gray-700">Oftalmologia</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="horario" class="hidden">
+                <h2 class="text-2xl font-semibold text-blue-600 mb-4">Agendar Consulta</h2> 
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">Selecione a Data e Horário</h3>
+                <div class="mb-4">
+                    <label for="date" class="block text-sm font-medium text-gray-700">Data:</label>
+                    <input type="date" id="date" class="w-full p-2 rounded-md border border-gray-300 focus:ring focus:ring-blue-200 focus:border-blue-300"> 
+                </div>
+                <div class="mb-4">
+                    <label for="time" class="block text-sm font-medium text-gray-700">Horário:</label>
+                    <select id="time" class="w-full p-2 rounded-md border border-gray-300 focus:ring focus:ring-blue-200 focus:border-blue-300"> 
+                        <option value="" disabled selected>Selecione o horário</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                    </select>
+                </div>
+                <div class="flex justify-between mt-6">
+                    <button onclick="mostrarEspecialidades()" class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Voltar</button>
+                    <button onclick="mostrarRevisao()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Continuar</button> 
+                </div>
+            </section>
+
+            <section id="revisao" class="hidden">
+                <h2 class="text-2xl font-semibold text-blue-600 mb-4">Revisar Detalhes</h2> 
+                <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+                    <strong class="text-gray-700">Especialidade:</strong> <span id="revisaoEspecialidade" class="text-blue-600"></span><br> 
+                    <strong class="text-gray-700">Data:</strong> <span id="revisaoData" class="text-blue-600"></span><br> 
+                    <strong class="text-gray-700">Horário:</strong> <span id="revisaoHora" class="text-blue-600"></span> 
+                </div>
+                <div class="flex justify-between mt-6">
+                    <button onclick="mostrarHorario()" class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Voltar</button>
+                    <button onclick="mostrarConfirmacao()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Confirmar Consulta</button>
+                </div>
+            </section>
+
+            <section id="confirmacao" class="hidden">
+                <h2 class="text-2xl font-semibold text-blue-600 mb-4">Confirmação</h2> 
+                <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md mb-4 flex items-center"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2 mr-2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                    <p>Consulta agendada com sucesso!</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+                    <strong class="text-gray-700">Especialidade:</strong> <span id="confirmaEspecialidade" class="text-blue-600"></span><br> 
+                    <strong class="text-gray-700">Data:</strong> <span id="confirmaData" class="text-blue-600"></span><br> 
+                    <strong class="text-gray-700">Horário:</strong> <span id="confirmaHora" class="text-blue-600"></span> 
+                </div>
+                <p class="text-gray-700 mb-4">Deseja adicionar a consulta ao seu Google Calendar?</p>
+                <div class="flex justify-end">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-plus mr-2"><path d="M20 9V6h-4v3H9V6H5v3H2v9h20V9Z"></path><path d="M16 13h-3v3h-2v-3H8v-2h3V8h2v3h3v2Z"></path></svg>
+                        Google Calendar
+                    </button>
+                </div>
+                <div class="flex justify-between mt-6">
+                    <button onclick="mostrarRevisao()" class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Voltar</button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="bg-blue-500 text-white p-4 rounded-b-lg text-center"> 
+            <p>© 2024 MedSaúde. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        const especialidadeSection = document.getElementById("especialidade");
+        const horarioSection = document.getElementById("horario");
+        const revisaoSection = document.getElementById("revisao");
+        const confirmacaoSection = document.getElementById("confirmacao");
+        let selectedEspecialidade = "";
+        let selectedData = "";
+        let selectedHora = "";
+
+        const especialidadeCards = document.querySelectorAll("#especialidade .bg-white");
+        especialidadeCards.forEach((card, index) => {
+            card.addEventListener("click", () => {
+                const especialidades = ["Clínica Geral", "Cardiologia", "Neurologia", "Ortopedia", "Oftalmologia"];
+                selectedEspecialidade = especialidades[index];
+                mostrarHorario();
+            });
+        });
+
+        function mostrarHorario() {
+            especialidadeSection.classList.add("hidden");
+            horarioSection.classList.remove("hidden");
+            revisaoSection.classList.add("hidden");
+            confirmacaoSection.classList.add("hidden");
+        }
+
+        function mostrarRevisao() {
+            const dataInput = document.getElementById("date");
+            const timeSelect = document.getElementById("time");
+
+            if (dataInput.value === "") {
+                alert("Por favor, selecione a data da consulta.");
+                return;
+            }
+            if (timeSelect.value === "") {
+                alert("Por favor, selecione o horário da consulta.");
+                return;
+            }
+
+            selectedData = dataInput.value;
+            selectedHora = timeSelect.value;
+
+            document.getElementById("revisaoEspecialidade").textContent = selectedEspecialidade;
+            document.getElementById("revisaoData").textContent = selectedData;
+            document.getElementById("revisaoHora").textContent = selectedHora;
+
+            especialidadeSection.classList.add("hidden");
+            horarioSection.classList.add("hidden");
+            revisaoSection.classList.remove("hidden");
+            confirmacaoSection.classList.add("hidden");
+        }
+
+        function mostrarConfirmacao() {
+            document.getElementById("confirmaEspecialidade").textContent = selectedEspecialidade;
+            document.getElementById("confirmaData").textContent = selectedData;
+            document.getElementById("confirmaHora").textContent = selectedHora;
+
+            especialidadeSection.classList.add("hidden");
+            horarioSection.classList.add("hidden");
+            revisaoSection.classList.add("hidden");
+            confirmacaoSection.classList.remove("hidden");
+        }
+
+        function mostrarEspecialidades() {
+            especialidadeSection.classList.remove("hidden");
+            horarioSection.classList.add("hidden");
+            revisaoSection.classList.add("hidden");
+            confirmacaoSection.classList.add("hidden");
+        }
+    </script>
+</body>
+</html>
+```
